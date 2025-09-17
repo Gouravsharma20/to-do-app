@@ -34,7 +34,27 @@ const createNote = async (req, res) => {
     }
 }
 
+const getNoteByGroupId = async(req,res) => {
+    try {
+        const {groupId} = req.params;
+        const group = await Group.findById(groupId);
+
+        if(!group) {
+            return res.status(404).json({Error: "Group doesnt exists"})
+        }
+
+        const notes = await Note.find({groupId:groupId}).sort({createdAt: -1})
+
+        return res.status(200).json(notes)
+
+    }
+    catch (err) {
+        return res.status(500).json({ Error: err.message})
+    }
+}
+
 module.exports = {
     getAllNoteData,
-    createNote
+    createNote,
+    getNoteByGroupId
 }
