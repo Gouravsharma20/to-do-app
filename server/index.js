@@ -16,7 +16,7 @@ app.use(cors())
 
 
 app.get("/",(req,res)=>{
-    res.send("hello")
+    res.send("To do app backend")
 })
 
 app.listen(port,()=>{

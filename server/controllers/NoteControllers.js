@@ -43,7 +43,7 @@ const getNoteByGroupId = async(req,res) => {
             return res.status(404).json({Error: "Group doesnt exists"})
         }
 
-        const notes = await Note.find({groupId:groupId}).sort({createdAt: -1})
+        const notes = await Note.find({groupId:groupId}).sort({createdAt:1})
 
         return res.status(200).json(notes)
 
