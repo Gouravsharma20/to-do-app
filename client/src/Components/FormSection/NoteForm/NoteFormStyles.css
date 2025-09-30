@@ -1,0 +1,220 @@
+/* NoteFormStyles.css */
+
+/* Hide on mobile devices */
+/* @media (max-width: 767px) {
+  .note-form {
+    display: none !important;
+  }
+} */
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  max-height: 100%;
+  overflow-y: auto;
+  background: #f5f5f5;
+  min-height: 100%;
+}
+
+/* ... rest of your CSS ... */
+
+
+
+
+
+
+
+.note-form {
+  padding: 24px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  border-top: 1px solid rgba(47, 96, 220, 0.1);
+  position: relative;
+}
+
+.note-form .form-title {
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2F60DC 0%, #5B8DEF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px 0;
+  text-transform: capitalize;
+  letter-spacing: -0.3px;
+}
+
+.note-form .form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px 60px 16px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.6;
+  color: #2d3748;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #2F60DC;
+  box-shadow: 0 0 0 4px rgba(47, 96, 220, 0.08),
+              0 4px 12px rgba(47, 96, 220, 0.15);
+  transform: translateY(-1px);
+}
+
+.form-textarea::placeholder {
+  color: #a0aec0;
+  font-style: normal;
+}
+
+.send-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #2F60DC 0%, #5B8DEF 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(47, 96, 220, 0.3);
+}
+
+.send-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(47, 96, 220, 0.4);
+  background: linear-gradient(135deg, #1a4fb8 0%, #2F60DC 100%);
+}
+
+.send-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(47, 96, 220, 0.3);
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.send-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Character count (optional) */
+.char-count {
+  position: absolute;
+  right: 65px;
+  bottom: 18px;
+  font-size: 12px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .note-form {
+    padding: 20px 16px;
+  }
+
+  .note-form .form-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .note-form .form-label {
+    font-size: 12px;
+  }
+
+  .form-textarea {
+    min-height: 100px;
+    padding: 14px 55px 14px 14px;
+    font-size: 14px;
+    border-radius: 14px;
+  }
+
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .send-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .note-form {
+    padding: 16px 12px;
+  }
+
+  .note-form .form-title {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .form-textarea {
+    min-height: 90px;
+    padding: 12px 50px 12px 12px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .send-btn {
+    width: 38px;
+    height: 38px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .send-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Loading animation for button */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.send-btn.loading svg {
+  animation: spin 1s linear infinite;
+}
+
+
+
