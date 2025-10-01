@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
-import axios from 'axios'
 import "./NoteFormStyles.css";
 import { AppDataContext } from '../../../Context/AppContext';
+import axiosInstance from '../../../services/axiosInstance';
 
 const NoteForm = () => {
   const {noteForm, setNoteForm, selectedGroup, fetchNotes} = useContext(AppDataContext)
@@ -23,7 +23,7 @@ const NoteForm = () => {
         groupId: selectedGroup._id,
         content: noteForm.content
       };
-      const response = await axios.post("http://localhost:4000/api/note", NoteData)
+      const response = await axiosInstance.post("/api/note", NoteData)
       console.log(response)
       setNoteForm({
         groupId: "",

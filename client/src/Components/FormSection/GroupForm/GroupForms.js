@@ -1,7 +1,7 @@
 import { useContext,useState } from "react"
-import axios from 'axios';
 import { AppDataContext } from "../../../Context/AppContext";
 import './GroupFormStyles.css';
+import axiosInstance from "../../../services/axiosInstance";
 
 const GroupForm = ({onClose}) => {
   const { form, setform,getGroups } = useContext(AppDataContext)
@@ -23,7 +23,7 @@ const GroupForm = ({onClose}) => {
     e.preventDefault();
     setErrorMessage("");
     try {
-      const response = await axios.post("http://localhost:4000/api/group", form)
+      const response = await axiosInstance.post("/api/group", form)
       console.log(response)
       setform({
         name: "",

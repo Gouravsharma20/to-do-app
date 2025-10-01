@@ -1,5 +1,5 @@
 import {createContext, useState,useEffect,useCallback } from "react"
-import axios from 'axios';
+import axiosInstance from "../services/axiosInstance";
 export const AppDataContext = createContext()
 
 
@@ -37,7 +37,7 @@ const AppContext = ({ children }) => {
     };
     //all group names
     const getGroups = async () => {
-            const allGroups = await axios.get("http://localhost:4000/api/group")
+            const allGroups = await axiosInstance.get("/api/group")
             const data = allGroups.data
             setGroups(data)
         }
@@ -61,7 +61,7 @@ const AppContext = ({ children }) => {
 
         try {
             // Fetch notes for the selected group
-            const response = await axios.get(`http://localhost:4000/api/note/group/${groupId}`)
+            const response = await axiosInstance.get(`/api/note/group/${groupId}`)
             const data = response.data
             setNotes(data)
         } catch (error) {
