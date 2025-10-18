@@ -5,6 +5,7 @@ import NoteForm from '../../Components/FormSection/NoteForm/NoteForms'
 import NoteRecords from '../../Components/Records/NoteRecords/NoteRecords'
 import "./HomeStyles.css"
 import { AppDataContext } from '../../Context/AppContext'
+import icon from '../../assets/icon.png';
 
 
 const Home = () => {
@@ -46,10 +47,9 @@ const Home = () => {
         {!selectedGroup ? (
           <div className="welcome-screen">
             <div className="welcome-content">
-              <div className="welcome-illustration">
-                {/* You can add an illustration/image here */}
-                <div className="notes-icon">📝</div>
-              </div>
+              <div className="notes-icon">
+                  <img src = {icon} width="500" height="250" alt=""/>
+                </div>
               <h2>Pocket Notes</h2>
               <p>
                 Send and receive messages without keeping your phone online.<br/>
