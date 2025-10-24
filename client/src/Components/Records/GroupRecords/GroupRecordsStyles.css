@@ -11,7 +11,7 @@
   align-items: center;
   gap: 15px;
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   background-color: transparent;
@@ -22,17 +22,18 @@
 }
 
 .group-record-item.selected {
-  background-color: #2F60DC;
+  background-color: #cfd0d5;
+  color: black;
 }
 
 .group-record-item.selected .group-name {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .group-name {
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: #000000;
   margin: 0;
   flex: 1;
 }

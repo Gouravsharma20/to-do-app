@@ -26,16 +26,19 @@ const NoteRecords = () => {
             hour12: true
         });
 
+        const day = date.getDate()
+        const month = date.toLocaleString('en-US', {month: `short` });
+        const year = date.getFullYear();
+        const dateFormatted = `${day} ${month} ${year}`
+
+        
+
         if (isToday) {
             return `Today ${time}`;
         } else if (isYesterday) {
             return `Yesterday ${time}`;
         } else {
-            return `${date.toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
-            })} ${time}`;
+            return `${dateFormatted} . ${time}`;
         }
     };
 
@@ -59,7 +62,7 @@ const NoteRecords = () => {
     if (!notes.length) {
         return (
             <div className="no-notes">
-                <p>No notes yet for this group. Start by adding your first note!</p>
+                <div></div>
             </div>
         );
     }

@@ -1,11 +1,10 @@
 .note-records-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1px;
   padding: 24px;
   max-height: 100%;
   overflow-y: auto;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100%;
   position: relative;
 }
@@ -17,28 +16,21 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.2), transparent 50%);
+  background:   
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.2), transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
 
 .note-item {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(2, 0, 0, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
   padding: 20px 24px;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.6);
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -60,23 +52,22 @@
 .note-item:hover {
   transform: translateY(-4px);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(255, 255, 255, 0.15),
+    0 4px 12px rgba(255, 255, 255, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .note-item::before {
-  content: '';
+  content:'';
   position: absolute;
   top: 0;
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px 0 0 16px;
+  background: linear-gradient(180deg, #667eea 0%, #ffffff 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: 16px 0 0 16px;
 }
 
 .note-item:hover::before {
@@ -86,7 +77,7 @@
 .note-content {
   font-size: 15px;
   line-height: 1.7;
-  color: #2d3748;
+  color: #000000;
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-word;
@@ -101,13 +92,13 @@
   align-items: center;
   justify-content: flex-end;
   font-size: 12px;
-  color: #718096;
-  font-weight: 500;
+  color: #000000;
+  font-weight: 500 bolder;
   align-self: flex-end;
   padding: 6px 12px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
   border-radius: 8px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.1em;
   transition: all 0.2s ease;
 }
 
@@ -143,12 +134,7 @@
   }
 }
 
-.no-notes::before {
-  content: '📝';
-  font-size: 72px;
-  opacity: 0.5;
-  animation: float 3s ease-in-out infinite;
-}
+
 
 @keyframes float {
   0%, 100% {
@@ -162,7 +148,7 @@
 .no-notes p {
   margin: 0;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   font-weight: 400;
   line-height: 1.6;
   max-width: 400px;
@@ -391,49 +377,35 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .note-records-container {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background-color: #dee5f8;
   }
   
   .note-item {
-    background: rgba(30, 30, 46, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      0 2px 8px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    background: rgb(255, 255, 255);
   }
   
-  .note-item:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.4),
-      0 4px 12px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
   
-  .note-item::before {
-    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-  }
+  
+  
   
   .note-content {
-    color: #e2e8f0;
+    color: #000000;
   }
   
   .note-timestamp {
-    color: #a0aec0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+    color: #000000;
   }
   
-  .note-item:hover .note-timestamp {
+  /* .note-item:hover .note-timestamp {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
     color: #9ca3ff;
-  }
+  } */
   
-  .no-notes p {
+  /* .no-notes p {
     color: rgba(255, 255, 255, 0.8);
-  }
+  } */
   
-  .note-records-container::-webkit-scrollbar-track {
+  /* .note-records-container::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
   }
   
@@ -443,5 +415,5 @@
   
   .note-records-container::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
-  }
+  } */
 }
