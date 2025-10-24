@@ -44,24 +44,17 @@ const GroupForm = ({onClose}) => {
       }
     }
   }
-  const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33F5', '#33F5FF', '#F5FF33'];
+  const colors = ['#B38BFA', '#FF79F2', '#43E6FC', '#F19576', '#0047FF', '#6691FF'];
   return (
     <form className="group-form" onSubmit={createGroup}>
-      <button 
-        type="button" 
-        className="close-btn" 
-        onClick={onClose}
-        aria-label="Close"
-      >
-        ×
-      </button>
-      <h1 className="form-title">Create a group</h1>
+      <h1 className="form-title">Create New group</h1>
       {errorMessage && (
         <div className="error-message">
           {errorMessage}
         </div>
       )}
-      <label className="form-label" htmlFor=''>Group name</label>
+      <div className="group-name">
+        <label className="form-label" htmlFor=''>Group Name</label>
       <input type='text'
         name='name'
         className="form-input"
@@ -69,8 +62,11 @@ const GroupForm = ({onClose}) => {
         placeholder="Enter Group Name"
         onChange={updateForm}
         required></input>
+      </div>
+      
       <br />
-      <label className="form-label" htmlFor=''>Group color</label>
+      <div className="choose-color">
+        <label className="form-label" htmlFor=''>Choose colour</label>
       <div className="color-options">
         {colors.map(color => (
           <label key={color} className="color-label">
@@ -90,8 +86,12 @@ const GroupForm = ({onClose}) => {
               </span>
           </label>
         ))}
+      </div> 
       </div>
-      <button type='submit' className="submit-btn">Create Group</button>
+      <div className="button-container">
+        <button type='submit' className="submit-btn">Create</button>
+      </div>
+      
     </form>
   )
 }

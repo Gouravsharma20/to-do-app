@@ -12,7 +12,7 @@ const groupSchema = mongoose.Schema({
     color:{
         type:String,
         required:true,
-        enum:['#FF5733', '#33FF57', '#3357FF', '#FF33F5', '#33F5FF', '#F5FF33']
+        enum:['#B38BFA', '#FF79F2', '#43E6FC', '#F19576', '#0047FF', '#6691FF']
     }
 
 } , {

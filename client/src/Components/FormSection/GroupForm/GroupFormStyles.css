@@ -17,43 +17,46 @@
 /* Modal Container */
 .group-form {
   background-color: white;
-  border-radius: 10px;
-  padding: 30px 40px;
+  padding: 10px 25px;
   width: 400px;
   max-width: 90vw;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 3px solid #35A7FF;
   position: relative;
 }
 
 /* Form Title */
 .form-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: #333;
-  margin: 0 0 25px 0;
-  text-align: center;
+  text-align: start;
 }
 
 /* Form Labels */
 .form-label {
-  display: block;
+  display: inline-block;
   font-size: 18px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 12px;
-  margin-top: 20px;
+  font-weight: 500; 
+  color: #000000;
 }
-
-/* Text Input - Rounded Circular */
+.group-name {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.choose-color {
+  display: flex;
+  align-items: row;
+  padding: auto;
+}
 .form-input {
   width: 100%;
-  padding: 15px 20px;
+  padding: 7px 15px;
   border: 1px solid #ddd;
-  border-radius: 25px; /* Circular/rounded corners */
+  border-radius: 15px;
   font-size: 16px;
   font-family: inherit;
-  margin-bottom: 20px;
+  flex: 1;
   box-sizing: border-box;
   background-color: #f8f9fa;
 }
@@ -73,8 +76,9 @@
 /* Color Options Container */
 .color-options {
   display: flex;
-  gap: 15px;
+  gap: 7px;
   margin-bottom: 30px;
+  margin-left: 20px;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
@@ -97,8 +101,8 @@
 
 /* Color Circle - Shows actual background color */
 .color-circle {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   display: block;
   border: 2px solid #ddd;
@@ -137,17 +141,19 @@
 
 /* Submit Button */
 .submit-btn {
-  background-color: #2F60DC;
+  background-color: #001F8B;
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 12px 30px;
-  font-size: 16px;
+  padding: 4px 25px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  width: 100%;
-  margin-top: 10px;
+}
+.button-container {
+  display: flex;
+  justify-content: end;
 }
 
 .submit-btn:hover {
@@ -160,38 +166,7 @@
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(47, 96, 220, 0.3);
 }
-  /* Close Button */
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: red;
-  border-radius: 100;
-  font-size: 28px;
-  color: #cc4b4b;
-  cursor: pointer;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  padding: 0;
-  line-height: 1;
-}
 
-.close-btn:hover {
-  background-color: #f0f0f0;
-  color: #333;
-  transform: rotate(90deg);
-}
-
-.close-btn:active {
-  background-color: #e0e0e0;
-  transform: rotate(90deg) scale(0.95);
-}
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
