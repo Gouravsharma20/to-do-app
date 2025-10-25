@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import "./NoteFormStyles.css";
 import { AppDataContext } from '../../../Context/AppContext';
 import axiosInstance from '../../../services/axiosInstance';
+import vector from '../../../assets/vector.png';
 
 const NoteForm = () => {
   const {noteForm, setNoteForm, selectedGroup, fetchNotes} = useContext(AppDataContext)
@@ -39,13 +40,11 @@ const NoteForm = () => {
 
   return (
     <form className='note-form' onSubmit={createNote}>
-      <h1 className='form-title'>add note to {selectedGroup?.name}</h1>
-      <label className='form-label'>Note Content</label>
       <div className='form-textarea-wrapper'>
         <textarea
           name='content'
           className='form-textarea'
-          placeholder='Type your note here...'
+          placeholder='Enter your text here........... '
           value={noteForm.content}
           onChange={updateNoteForm}
           rows={4}
@@ -56,18 +55,7 @@ const NoteForm = () => {
           className={`send-btn ${isLoading ? 'loading' : ''}`}
           disabled={isLoading || !noteForm.content.trim()}
         >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          >
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
+          <img src={vector} alt=''/>
         </button>
       </div>
     </form>

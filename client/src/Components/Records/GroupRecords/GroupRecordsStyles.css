@@ -9,7 +9,7 @@
 .group-record-item {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   padding: 15px;
   border-radius: 6px;
   cursor: pointer;
@@ -22,7 +22,7 @@
 }
 
 .group-record-item.selected {
-  background-color: #cfd0d5;
+  background-color: #2F2F2F;
   color: black;
 }
 

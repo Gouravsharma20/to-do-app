@@ -78,7 +78,6 @@ const NoteRecords = () => {
                     </div>
                 </div>
             ))}
-            
         </div>
     );
 }
