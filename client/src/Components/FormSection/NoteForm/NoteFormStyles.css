@@ -1,14 +1,5 @@
 /* NoteFormStyles.css */
 
-
-
-/* Hide on mobile devices */
-/* @media (max-width: 767px) {
-  .note-form {
-    display: none !important;
-  }
-} */
-
 .note-form {
   display: flex;
   flex-direction: column;
