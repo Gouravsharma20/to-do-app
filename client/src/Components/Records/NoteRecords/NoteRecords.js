@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import {useContext, useEffect} from "react"
 import { AppDataContext } from '../../../Context/AppContext';
 import "./NoteRecordsStyles.css"
@@ -34,11 +33,11 @@ const NoteRecords = () => {
         
 
         if (isToday) {
-            return `Today ${time}`;
+            return `Today • ${time}`;
         } else if (isYesterday) {
-            return `Yesterday ${time}`;
+            return `Yesterday • ${time}`;
         } else {
-            return `${dateFormatted} . ${time}`;
+            return `${dateFormatted} • ${time}`;
         }
     };
 

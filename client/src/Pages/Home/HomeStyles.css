@@ -40,7 +40,7 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 400px;
   background-color: white;
   border-right: 1px solid #e0e0e0;
   display: flex;
@@ -74,7 +74,7 @@
 .add-group-btn {
   position: fixed;
   bottom: 30px;
-  left: 210px;
+  left: 300px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -203,9 +203,9 @@ notes-icon img {
 
 .notes-display {
   flex: 1;
-  padding: 20px;
+  padding: 0px;
   overflow-y: auto;
-  background-color: white;
+  background-color: #dae5f5;
 }
 
 .note-input-section {
