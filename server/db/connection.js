@@ -7,7 +7,7 @@ if (!mongoURI) {
   process.exit(1);
 }
 
-console.log("🔗 Connecting to MongoDB...");
+console.log("Connecting to MongoDB...");
 
 mongoose.connect(mongoURI)
   .then(() => {

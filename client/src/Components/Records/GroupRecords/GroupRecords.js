@@ -1,10 +1,14 @@
-import { useContext } from "react"
+import { useContext,useEffect } from "react"
 import { AppDataContext } from '../../../Context/AppContext';
 import './GroupRecordsStyles.css';
 
 const GroupRecords = ({ onGroupSelect }) => {
 
     const { groups, selectGroup, selectedGroup,getGroups } = useContext(AppDataContext)
+
+    useEffect(()=>{
+        getGroups();
+    },[getGroups]);
 
     const getAbriviation = (name) => {
         const words = name.trim().split(` `).filter(words => words.length > 0);
@@ -15,7 +19,6 @@ const GroupRecords = ({ onGroupSelect }) => {
         }
         return ""
     }
-    getGroups()
 
     const handleGroupClick = (group) => {
         if (onGroupSelect) {

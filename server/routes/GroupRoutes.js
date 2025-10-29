@@ -7,9 +7,6 @@ const { getAllGroupData,createGroup,getNotesForSpecificGroup } = require("../con
 // get group credentials
 router.get("/",getAllGroupData)
 
-// get notes from a specific group
-router.get("/:groupId/notes",getNotesForSpecificGroup)
-
 //create Group name
 
 router.post("/",createGroup)

@@ -15,7 +15,7 @@ const noteSchema = mongoose.Schema({
     
 },{timestamps:true})
 
-noteSchema.index({createdAt:-1});
+noteSchema.index({createdAt:1});
 
 const Note = mongoose.model("Note",noteSchema);
 
