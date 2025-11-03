@@ -9,16 +9,8 @@ const NoteRecords = () => {
     useEffect(() => {
         fetchNotes(selectedGroup?._id);
     }, [selectedGroup,fetchNotes]);
-
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-
-        const isToday = date.toDateString() === today.toDateString();
-        const isYesterday = date.toDateString() === yesterday.toDateString();
-
         const time = date.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
@@ -29,16 +21,7 @@ const NoteRecords = () => {
         const month = date.toLocaleString('en-US', {month: `short` });
         const year = date.getFullYear();
         const dateFormatted = `${day} ${month} ${year}`
-
-        
-
-        if (isToday) {
-            return `Today • ${time}`;
-        } else if (isYesterday) {
-            return `Yesterday • ${time}`;
-        } else {
-            return `${dateFormatted} • ${time}`;
-        }
+        return `${dateFormatted} • ${time}`;
     };
 
     if (loading) {
