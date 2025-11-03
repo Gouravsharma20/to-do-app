@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback } from "react"
-import axiosInstance from "../services/axiosInstance";
+import { storageServices } from "../services/storageServices"
 export const AppDataContext = createContext()
 
 
@@ -37,41 +37,51 @@ const AppContext = ({ children }) => {
     const selectGroup = (group) => {
         setSelectedGroup(group);
     };
-    //all group names
-    const getGroups = useCallback(async () => {
+    //fetch all groups
+    const getGroups = useCallback(() => {
         setGroupsLoading(true);
         setGroupsError(null);
         try {
-            const response = await axiosInstance.get("/api/group")
-            console.log("Group response : ", response.data);
-            if (response.data.success) {
-                setGroups(response.data.data)
-            }
-            else {
-                setGroupsError(response.data.error || "Failed to fetch groups")
-                setGroups([]);
-            }
+            setTimeout(()=>{
+                const groupData = storageServices.getGroups();
+                setGroups(groupData)
+                setGroupsLoading(false)
+            },0);
         } catch (err) {
-            const errMsg = err.response?.data?.error || "Failed to fetch groups";
-            setGroupsError(errMsg)
+            setGroupsError("Failed to fetch groups")
             setGroups([]);
+            setGroupsLoading(false);
             console.error("Error fetching Groups:", err);
-        } finally {
-            setGroupsLoading(false)
         }
-    }, []);
+    }, []);  
 
     useEffect(() => {
         getGroups();
     }, [getGroups]);
 
+    //creata a new group
+    const createGroup = useCallback((groupData)=>{
+        try {
+            const newGroup = storageServices.createGroup(groupData);
+            setGroups(storageServices.getGroups());
+            setform({name:"",color:"#B38BFA"})
+            return {success:true,data:newGroup}
+            
+        } catch (err) {
+            const errMsg = err.message || "Failed to create group";
+            console.error("Error creating Group:" ,err);
+            return {success:false,error:err.message}
+            
+        }
+    },[])
 
 
 
 
 
-    //All notes
-    const fetchNotes = useCallback(async (groupId) => {
+
+    //fetch notes for a specific group
+    const fetchNotes = useCallback((groupId) => {
         if (!groupId) {
             setNotes([])
             setError(null)
@@ -81,40 +91,29 @@ const AppContext = ({ children }) => {
         setError(null);
 
         try {
-            const response = await axiosInstance.get(`/api/note/group/${groupId}`)
-            console.log("Notes response", response.data);
-            if (response.data.success) {
-                setNotes(response.data.data);
-            } else {
-                setError(response.data.error || "Failed to fetch notes");
-                setNotes([]);
-            }
+            setTimeout(()=>{
+                const notesData = storageServices.getNotesByGroupId(groupId);
+                setNotes(notesData);
+                setloading(false);
+            },0);
         } catch (error) {
-            const errMsg = error.response?.data?.error || "Failed to fetch notes";
+            const errMsg = "Failed to fetch notes";
             setError(errMsg)
             setNotes([]);
+            setloading(false);
             console.error("Error fetching notes : ", error);
-        } finally {
-            setloading(false)
         }
-
     }, []);
 
     //create note
-    const createNote = useCallback(async (noteData) => {
+    const createNote = useCallback((noteData) => {
         try {
-            const response = await axiosInstance.post("/api/note", noteData);
-            console.log("Create note response:", response.data);
-
-            if (response.data.success) {
-                await fetchNotes(selectedGroup._id);
-                setNoteForm({ groupId: "", content: "" });
-                return { success: true };
-            } else {
-                return { success: false, error: response.data.error };
-            }
+            const newNote = storageServices.createNote(noteData);
+            fetchNotes(selectedGroup._id);
+            setNoteForm({groupId: "",content: ""});
+            return {success:true,data:newNote}
         } catch (err) {
-            const errMsg = err.response?.data?.error || "Failed to create note";
+            const errMsg ="Failed to create note"
             console.error("Error creating note:", err);
             return { success: false, error: errMsg };
         }
@@ -147,7 +146,8 @@ const AppContext = ({ children }) => {
                 error,
                 setError,
                 fetchNotes,
-                createNote
+                createNote,
+                createGroup
 
             }}>
                 {

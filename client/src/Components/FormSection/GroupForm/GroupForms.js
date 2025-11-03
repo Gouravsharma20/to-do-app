@@ -1,10 +1,9 @@
 import { useContext,useState } from "react"
 import { AppDataContext } from "../../../Context/AppContext";
 import './GroupFormStyles.css';
-import axiosInstance from "../../../services/axiosInstance";
 
 const GroupForm = ({onClose}) => {
-  const { form, setform,getGroups } = useContext(AppDataContext)
+  const { form, setform,createGroup } = useContext(AppDataContext)
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -19,34 +18,32 @@ const GroupForm = ({onClose}) => {
       setErrorMessage("");
     }
   }
-  const createGroup = async (e) => {
+  const handleCreateGroup = async (e) => {
     e.preventDefault();
     setErrorMessage("");
+    if(!form.name.trim) {
+      setErrorMessage("Group name cannot be empty");
+      return
+    }
     try {
-      const response = await axiosInstance.post("/api/group", form)
-      console.log(response)
-      setform({
-        name: "",
-        color: ""
-      })
-      getGroups()
-      onClose()
-
-    } catch (error) {
-      console.log("Error details:", error.response?.data);
-      console.log("Form data being sent:", form);
-      if (error.response?.data?.message) {
-        setErrorMessage(error.response.data.message);
-      } else if (error.response?.status === 409) {
-        setErrorMessage("A group with this name already exists. Please choose a different name.");
+      const result = createGroup(form);
+      if (result.success) {
+        setform({
+          name:"",
+          color:"#B38BFA"
+        })
+        onClose()
       } else {
-        setErrorMessage("Failed to create group. Please try again.");
+        setErrorMessage(result.error ||"Failed to create group");
       }
+    }catch(error) {
+      console.log("Error creating group:", error)
+      setErrorMessage("Failed to create group. Please try again.");
     }
   }
   const colors = ['#B38BFA', '#FF79F2', '#43E6FC', '#F19576', '#0047FF', '#6691FF'];
   return (
-    <form className="group-form" onSubmit={createGroup}>
+    <form className="group-form" onSubmit={handleCreateGroup}>
       <h1 className="form-title">Create New group</h1>
       {errorMessage && (
         <div className="error-message">
@@ -56,6 +53,7 @@ const GroupForm = ({onClose}) => {
       <div className="group-name">
         <label className="form-label" htmlFor=''>Group Name</label>
       <input type='text'
+        id="groupName"
         name='name'
         className="form-input"
         value={form.name}

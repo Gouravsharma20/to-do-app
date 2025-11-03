@@ -1,11 +1,10 @@
 import { useContext, useState } from 'react'
 import "./NoteFormStyles.css";
 import { AppDataContext } from '../../../Context/AppContext';
-import axiosInstance from '../../../services/axiosInstance';
 import vector from '../../../assets/vector.png';
 
 const NoteForm = () => {
-  const {noteForm, setNoteForm, selectedGroup, fetchNotes} = useContext(AppDataContext)
+  const {noteForm, setNoteForm, selectedGroup, createNote} = useContext(AppDataContext)
   const [isLoading, setIsLoading] = useState(false)
 
   const updateNoteForm = (e) => {
@@ -16,7 +15,7 @@ const NoteForm = () => {
     })
   }
 
-  const createNote = async(e) => {
+  const handlecreateNote = async(e) => {
     e.preventDefault()
     setIsLoading(true)
     try {
@@ -24,22 +23,24 @@ const NoteForm = () => {
         groupId: selectedGroup._id,
         content: noteForm.content
       };
-      const response = await axiosInstance.post("/api/note", NoteData)
-      console.log(response)
-      setNoteForm({
-        groupId: "",
-        content: ""
-      });
-      fetchNotes(selectedGroup?._id)
+      const result = createNote(NoteData)
+      if (result.success) {
+        setNoteForm({
+          groupId: "",
+          content: ""
+        }); 
+      }else{
+          console.error("Error creating note:",result.error);
+        }
     } catch(error) {
-      console.log("Error creating note:", error.response?.data);
+      console.error("Error creating note:", error);
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <form className='note-form' onSubmit={createNote}>
+    <form className='note-form' onSubmit={handlecreateNote}>
       <div className='form-textarea-wrapper'>
         <textarea
           name='content'
