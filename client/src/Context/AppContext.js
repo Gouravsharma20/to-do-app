@@ -70,7 +70,7 @@ const AppContext = ({ children }) => {
         } catch (err) {
             const errMsg = err.message || "Failed to create group";
             console.error("Error creating Group:" ,err);
-            return {success:false,error:err.message}
+            return {success:false,error:errMsg}
             
         }
     },[])
